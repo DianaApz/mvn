@@ -10,17 +10,13 @@ import java.net.URL
 def jsonParse(def json) {
     new groovy.json.JsonSlurperClassic().parseText(json)
 }
+def mvnHome = tool 'M3'
 pipeline {
   agent  { label 'master' }
   environment {
     AWS_REGION = 'us-east-1'
   }
   stages { 
-    stage("Start") {
-        steps {
-          mvnHome = tool 'M3'
-        }
-    }  
     stage("Build") {
         steps {
             sh "'mvn' -Dmaven.test.failure.ignore clean package"
