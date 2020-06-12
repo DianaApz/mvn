@@ -25,7 +25,7 @@ pipeline {
         steps {
           script {
             junit '**/target/surefire-reports/TEST-*.xml'
-            archive 'target/*.jar'
+            archiveArtifacts 'target/*.jar'
             hygieiaDeployPublishStep applicationName: 'MyApp', artifactDirectory: '/target', artifactGroup: 'test', artifactName: '*.jar', artifactVersion: '1.0.0', buildStatus: 'InProgress', environmentName: 'QA'
           }       
         }
