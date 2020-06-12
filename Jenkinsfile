@@ -16,11 +16,14 @@ pipeline {
     AWS_REGION = 'us-east-1'
   }
   stages { 
+    stage("Start") {
+        steps {
+          mvnHome = tool 'M3'
+        }
+    }  
     stage("Build") {
         steps {
-            sh '''
-              mvn -Dmaven.test.failure.ignore clean package
-            '''
+            sh "'mvn' -Dmaven.test.failure.ignore clean package"
         }
     }              
     stage("Result") {
