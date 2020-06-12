@@ -10,7 +10,6 @@ import java.net.URL
 def jsonParse(def json) {
     new groovy.json.JsonSlurperClassic().parseText(json)
 }
-def mvnHome = tool 'M3'
 pipeline {
   agent  { label 'master' }
   environment {
@@ -19,7 +18,7 @@ pipeline {
   stages { 
     stage("Build") {
         steps {
-            sh "'mvn' -Dmaven.test.failure.ignore clean package"
+            sh "mvn -Dmaven.test.failure.ignore clean package"
         }
     }              
     stage("Result") {
